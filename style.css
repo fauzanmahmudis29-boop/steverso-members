@@ -397,14 +397,14 @@ nav {
     width: 800%; /* 8 gambar berjajar = 8 x 100% */
     height: 100%;
     background-image: 
-        url('image/1.JPG'),
-        url('image/2.JPG'),
-        url('image/3.JPG'),
-        url('image/4.JPG'),
-        url('image/5.JPG'),
-        url('image/6.jpg'),
-        url('image/7.JPG'),
-        url('image/8.JPG');
+        url('image/1.webp'),
+        url('image/2.webp'),
+        url('image/3.webp'),
+        url('image/4.webp'),
+        url('image/5.webp'),
+        url('image/6.webp'),
+        url('image/7.webp'),
+        url('image/8.webp');
     background-size: 12.5% 100%; /* Setiap gambar = 100/8 = 12.5% */
     background-repeat: no-repeat;
     background-position: 
