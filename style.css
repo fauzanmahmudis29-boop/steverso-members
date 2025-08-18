@@ -1,0 +1,1066 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Header & Navigation - FIXED VERSION */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    opacity: 0;
+    animation: slideInLeft 1s ease forwards;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    opacity: 0;
+    animation: slideInRight 1s ease forwards;
+}
+
+.nav-links li:nth-child(1) { animation-delay: 0.2s; }
+.nav-links li:nth-child(2) { animation-delay: 0.4s; }
+.nav-links li:nth-child(3) { animation-delay: 0.6s; }
+.nav-links li:nth-child(4) { animation-delay: 0.8s; }
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* Mobile hamburger menu */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Header Styles - FIXED */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0.8rem 0;
+        height: 10vh;
+        z-index: 1002; /* Diperbesar untuk mobile */
+    }
+    
+    nav {
+        padding: 0 1rem;
+        position: relative;
+    }
+    
+    .logo {
+        font-size: 1.4rem;
+        z-index: 1003;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        z-index: 1003;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        border-radius: 0 0 15px 15px;
+        margin-top: 0.5rem;
+        z-index: 1001; /* Ditambahkan z-index untuk mobile menu */
+    }
+    
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        animation: slideDown 0.4s ease forwards;
+    }
+    
+    .nav-links li {
+        opacity: 1;
+        animation: none;
+        margin: 0;
+    }
+    
+    .nav-links.active li {
+        opacity: 0;
+        animation: slideInRight 0.3s ease forwards;
+    }
+    
+    .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem 2rem;
+        text-align: center;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links li:last-child a {
+        border-bottom: none;
+    }
+    
+    .nav-links a:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(0);
+        padding-left: 2.5rem;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    header {
+        padding: 0.6rem 0;
+        z-index: 1002;
+    }
+    
+    nav {
+        padding: 0 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+        z-index: 1003;
+    }
+    
+    .mobile-menu-toggle {
+        z-index: 1003;
+    }
+    
+    .nav-links {
+        z-index: 1001;
+    }
+    
+    .nav-links a {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 320px) {
+    header {
+        z-index: 1002;
+    }
+    
+    nav {
+        padding: 0 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1rem;
+        z-index: 1003;
+    }
+    
+    .mobile-menu-toggle {
+        z-index: 1003;
+    }
+    
+    .nav-links {
+        z-index: 1001;
+        
+    }
+    
+    .hamburger-line {
+        width: 20px;
+        height: 2px;
+    }
+}
+
+/* Slide Down Animation for Mobile Menu */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Hero Section - Positioned below header */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    margin-top: 80px;
+}
+
+/* Dark overlay for better text readability */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* Hero Content Styling */
+.hero-content {
+    text-align: center;
+    z-index: 1;
+    padding: 2rem;
+    background: rgba(189, 187, 187, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(1px);
+    border: 0px solid rgba(255, 255, 255, 0.89);
+    box-shadow: 0 20px 40px rgba(207, 205, 205, 0.3);
+    animation: fadeInUp 1.5s ease-out;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 8rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+    background: linear-gradient(135deg, #ffffff 0%, #646168 20%, #8b8b8b 30%, #2f2f30 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+    
+    /* Fallback untuk browser yang tidak support gradient text */
+    color: #ffffff;
+    
+    /* Pastikan gradient dapat terlihat */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+    /* Alternative gradient yang lebih kontras */
+    /* background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 25%, #a0a0a0 50%, #404040 75%, #1a1a1a 100%); */
+}
+.floating {
+    animation: floating 5s ease-in-out infinite;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.hero-content p:nth-child(2) {
+    animation-delay: 0.5s;
+    font-style: italic;
+    font-size: 2rem;
+    color: #e0e0e0;
+}
+
+.hero-content p:nth-child(3) {
+    animation-delay: 1s;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #d46f1c;
+    -webkit-text-stroke: 0.5px #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    /* Alternative dengan text-shadow untuk compatibility yang lebih baik */
+    text-shadow: 
+        -0.5px -0.5px 0 #000000,  
+         0.5px -0.5px 0 #000000,
+        -0.5px  0.5px 0 #000000,
+         0.5px  0.5px 0 #000000,
+        -0.5px  0px 0 #000000,
+         0.5px  0px 0 #000000,
+         0px -0.5px 0 #000000,
+         0px  0.5px 0 #000000;
+    
+    /* Atau stroke yang lebih halus */
+    /* -webkit-text-stroke: 1px #000000; */
+    /* text-stroke: 1px #000000; */
+    
+    /* Atau stroke dengan warna berbeda */
+    /* -webkit-text-stroke: 2px #2c1810; */
+    /* text-stroke: 2px #2c1810; */
+}
+
+/* Animations */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    color: white;
+    z-index: 0;
+}
+
+/* Background Container untuk 8 Gambar */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800%; /* 8 gambar berjajar = 8 x 100% */
+    height: 100%;
+    background-image: 
+        url('image/1.JPG'),
+        url('image/2.JPG'),
+        url('image/3.JPG'),
+        url('image/4.JPG'),
+        url('image/5.JPG'),
+        url('image/6.jpg'),
+        url('image/7.JPG'),
+        url('image/8.JPG');
+    background-size: 12.5% 100%; /* Setiap gambar = 100/8 = 12.5% */
+    background-repeat: no-repeat;
+    background-position: 
+        0% center,      /* Gambar 1 */
+        12.5% center,   /* Gambar 2 */
+        25% center,     /* Gambar 3 */
+        37.5% center,   /* Gambar 4 */
+        50% center,     /* Gambar 5 */
+        62.5% center,   /* Gambar 6 */
+        75% center,     /* Gambar 7 */
+        87.5% center;   /* Gambar 8 */
+    animation: slideInfinite 32s infinite linear;
+    z-index: 0;
+}
+
+/* KEYFRAME UTAMA - SLIDE KONTINYU TANPA HENTI */
+@keyframes slideInfinite {
+    0% { 
+        transform: translateX(0%); 
+    }
+    100% { 
+        transform: translateX(-78%); /* Slide sampai gambar terakhir */
+    }
+}
+
+
+/* Mobile styles - Auto resolution for phones */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0.8rem 0;
+    }
+    
+    nav {
+        padding: 0 1rem;
+        position: relative;
+    }
+    
+    .logo {
+        font-size: 1.4rem;
+        z-index: 1001;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        z-index: 1001;
+    }
+    
+    .nav-links {
+        position: relative;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        border-radius: 0 0 15px 15px;
+        margin-top: 0.5rem;
+    }
+    
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        animation: slideDown 0.4s ease forwards;
+    }
+    
+    .nav-links li {
+        opacity: 1;
+        animation: none;
+        margin: 0;
+    }
+    
+    .nav-links.active li {
+        opacity: 0;
+        animation: slideInRight 0.3s ease forwards;
+    }
+    
+    .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem 2rem;
+        text-align: center;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links li:last-child a {
+        border-bottom: none;
+    }
+    
+    .nav-links a:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(0);
+        padding-left: 2.5rem;
+    }
+    
+    /* Hero responsive */
+    .hero {
+        margin-top: 60px;
+    }
+    
+    .hero-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .hero-content p:nth-child(2) {
+        font-size: 0.9rem;
+    }
+    
+    .hero-content p:nth-child(3) {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    header {
+        padding: 0.6rem 0;
+    }
+    
+    nav {
+        padding: 0 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links a {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero {
+        margin-top: 55px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-content p:nth-child(3) {
+        font-size: 1rem;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 320px) {
+    nav {
+        padding: 0 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .hamburger-line {
+        width: 20px;
+        height: 2px;
+    }
+    
+    .hero {
+        margin-top: 50px;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Section Styling */
+section {
+    padding: 5rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    position: relative;
+    margin-bottom: 3rem;
+    color: #ffffff;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.section-title-photo {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #3f3f3f;
+    opacity: 100;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.section-title.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Members Section */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.member-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.member-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Enhanced Member Photo */
+.member-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Member Photo Image Styling */
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* Member Photo Hover Effects */
+.member-photo:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.member-photo:hover img {
+    transform: scale(1.1);
+}
+
+/* Ketika member-card di hover, photo ikut beranimasi */
+.member-card:hover .member-photo {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow: 0 20px 35px rgba(102, 126, 234, 0.4);
+}
+
+/* Member Photo dengan Status Online */
+.member-photo.online::before {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border: 3px solid white;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Member Photo dengan Border Ring Animation */
+.member-photo.with-ring::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: rotateRing 3s linear infinite;
+}
+
+.member-photo.with-ring:hover::after {
+    opacity: 0.3;
+}
+
+@keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Member Photo untuk Leadership */
+.member-photo.leadership {
+    width: 140px;
+    height: 140px;
+    font-size: 2.2rem;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.member-photo.leadership:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 25px 45px rgba(102, 126, 234, 0.5);
+}
+
+/* Member Photo dengan Glow Effect */
+.member-photo.glow {
+    box-shadow: 
+        0 0 20px rgba(102, 126, 234, 0.3),
+        0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
+.member-photo.glow:hover {
+    box-shadow: 
+        0 0 30px rgba(102, 126, 234, 0.5),
+        0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Member Photo dengan Edit Overlay */
+.member-photo.editable {
+    cursor: pointer;
+}
+
+.member-photo.editable::after {
+    content: '📷';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.member-photo.editable:hover::after {
+    opacity: 1;
+}
+
+/* Member Photo Loading State */
+.member-photo.loading {
+    background: linear-gradient(135deg, #e0e0e0, #b0b0b0);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Member Photo untuk Status Berbeda */
+.member-photo.inactive {
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.member-photo.inactive:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.member-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.member-info {
+    color: #666;
+    margin-bottom: 0.3rem;
+}
+
+/* Gallery Section */
+.gallery {
+    background: #f8f9fa;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.gallery-item.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Stats Section */
+.stats {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.stat-item {
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.stat-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 3rem 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Floating Animation */
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Member Photo Animation saat Muncul */
+.member-photo.animate-in {
+    animation: photoSlideIn 0.8s ease forwards;
+}
+
+@keyframes photoSlideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(30px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) translateY(-5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+    
+    /* Member Photo Responsive */
+    .member-photo {
+        width: 100px;
+        height: 100px;
+        font-size: 1.8rem;
+    }
+    
+    .member-photo.leadership {
+        width: 120px;
+        height: 120px;
+        font-size: 2rem;
+    }
+    
+    .member-photo.online::before {
+        width: 16px;
+        height: 16px;
+        bottom: 6px;
+        right: 6px;
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .member-photo {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+    }
+    
+    .member-photo.leadership {
+        width: 100px;
+        height: 100px;
+        font-size: 1.8rem;
+    }
+    
+    .member-photo.online::before {
+        width: 14px;
+        height: 14px;
+        bottom: 4px;
+        right: 4px;
+    }
+}
